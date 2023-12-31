@@ -13,6 +13,7 @@ class student():
         self.studySpecificLessons2 = studySpecificLessons
 
 
+
 def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normalNumber2, normalNumber3,
                            normalNumber4,
                            normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5):
@@ -50,7 +51,6 @@ def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normal
         print("Database file does not exist")
 
 def main():
-
     print(
         "Choose your choice for operation\n\n 1_Add Student to list\n\n 2_delete Student from list \n\n 3_Edit Student perapeties with geting UniCode:\n\n 4 Calucate and print full name and exam results and Average normal and avarage specific exam numbers\n\n 5_List of bad Studente(12+) \n\n 6_list of Good Students(17+) \n\n 7_list of between exma number average \n\n 8_full result of all students \n\n 9_exit\n\n"
         " 10_delete db")
@@ -94,7 +94,15 @@ def main():
     elif getnumber == 2:
         numberForDeleteStudent = int(input("tell me the student uniNumber for delete his/her : "))
 
-        def deleteStudentFromStudentsTable():
+
+
+        # cur.execute("""ALTER TABLE students DROP ROW normalNumber1 where uniNimber = ?;""")
+        obj.print_db()
+
+        print("Student deleted from studensts table")
+        main()
+    elif getnumber == 3:
+        def RemoveAllWithGetUniNumber(uniNumberForRemove):
             conn = sqlite3.connect("Students.db")
 
             cur = conn.cursor()
@@ -102,13 +110,10 @@ def main():
             #  cur.execute(sqlite, (uniNumberForWorkWithStudentInDataBaseAndDelete,))
             #  result = cur.fetchall()
             sql_update_query = """DELETE from students where uniNumber = ?"""
-            cur.execute(sql_update_query, (numberForDeleteStudent,))
+            cur.execute(sql_update_query, (uniNumberForRemove,))
             conn.commit()
-
-        # cur.execute("""ALTER TABLE students DROP ROW normalNumber1 where uniNimber = ?;""")
+        RemoveAllWithGetUniNumber(int(input("tell me a number for delete3")))
         obj.print_db()
-
-        print("Student deleted from studensts table")
         main()
     elif getnumber == 8:
         obj.print_db()
