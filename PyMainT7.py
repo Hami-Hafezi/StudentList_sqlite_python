@@ -13,7 +13,6 @@ class student():
         self.studySpecificLessons2 = studySpecificLessons
 
 
-
 def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normalNumber2, normalNumber3,
                            normalNumber4,
                            normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5):
@@ -49,6 +48,7 @@ def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normal
         sqliteConnection.close()
     else:
         print("Database file does not exist")
+
 
 def main():
     print(
@@ -94,8 +94,6 @@ def main():
     elif getnumber == 2:
         numberForDeleteStudent = int(input("tell me the student uniNumber for delete his/her : "))
 
-
-
         # cur.execute("""ALTER TABLE students DROP ROW normalNumber1 where uniNimber = ?;""")
         obj.print_db()
 
@@ -112,7 +110,39 @@ def main():
             sql_update_query = """DELETE from students where uniNumber = ?"""
             cur.execute(sql_update_query, (uniNumberForRemove,))
             conn.commit()
+
         RemoveAllWithGetUniNumber(int(input("tell me a number for delete3")))
+        obj.print_db()
+        main()
+    elif getnumber == 4:
+        # def editTableWithGetUniNumber(uniNumberForEdit):
+        #     conn = sqlite3.connect("Students.db")
+        #     cur = conn.cursor()
+        #     getFirstName = str(input("FirstName : "))
+        #     getLastName = str(input("LastName : "))
+        #     getUniversityCode = int(input("UniversityCode with 5 digit : "))
+        #     getNormalExamNumber1 = int(input("normal 1 : "))
+        #     getNormalExamNumber2 = int(input("normal 2 : "))
+        #     getNormalExamNumber3 = int(input("normal 3 : "))
+        #     getNormalExamNumber4 = int(input("normal 4 : "))
+        #     getNormalExamNumber5 = int(input("normal 5 : "))
+        #     getSpecificNumber1 = int(input("specific 1 : "))
+        #     getSpecificNumber2 = int(input("specific 2 : "))
+        #     getSpecificNumber3 = int(input("specific 3 : "))
+        #     getSpecificNumber4 = int(input("specific 4 : "))
+        #     getSpecificNumber5 = int(input("specific 5 : "))
+        #     # execute the query
+        #     cur.execute(
+        #         "UPDATE students SET firstName  = ?, lastName = ?,uniNumber  = ?, normalNumber1 = ?,normalNumber2  = ?, normalNumber3 = ?,normalNumber4  = ?, normalNumber5 = ?,spcNumber1  = ?, spcNumber2 = ?,spcNumber3  = ?, spcNumber4 = ?,spcNumber5 = ? WHERE uniNumber = ?",
+        #         (getFirstName, getLastName, getUniversityCode,getNormalExamNumber1,getNormalExamNumber2, getNormalExamNumber3,getNormalExamNumber4, getNormalExamNumber5,getSpecificNumber1, getSpecificNumber2,getSpecificNumber3, getSpecificNumber4,getSpecificNumber5, uniNumberForEdit))
+        #     obj.print_db()
+        #     # commit the changes
+        #     conn.commit()
+        #
+        #     # close the connection
+        #     conn.close()
+        #
+        # editTableWithGetUniNumber(int(input("tell me a number for edit")))
         obj.print_db()
         main()
     elif getnumber == 8:
