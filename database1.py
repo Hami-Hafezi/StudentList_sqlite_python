@@ -46,6 +46,9 @@ class database1:
         cursorForStudent.execute("""ALTER TABLE students ADD COLUMN spcNumber3 INTEGER;""")
         cursorForStudent.execute("""ALTER TABLE students ADD COLUMN spcNumber4 INTEGER;""")
         cursorForStudent.execute("""ALTER TABLE students ADD COLUMN spcNumber5 INTEGER;""")
+        cursorForStudent.execute("""ALTER TABLE students ADD COLUMN ave1 INTEGER;""")
+        cursorForStudent.execute("""ALTER TABLE students ADD COLUMN ave2 INTEGER;""")
+        cursorForStudent.execute("""ALTER TABLE students ADD COLUMN aveAll INTEGER;""")
         print("Table is Ready")
 
         cursorForStudent.close()

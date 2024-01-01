@@ -15,7 +15,8 @@ class student():
 
 def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normalNumber2, normalNumber3,
                            normalNumber4,
-                           normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5):
+                           normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5, ave1, ave2,
+                           aveAll):
     if os.path.exists("Students.db"):
         # Create a connection object to the database file
         sqliteConnection = sqlite3.connect('Students.db')
@@ -28,10 +29,10 @@ def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normal
         # Try to execute the INSERT statement
         try:
             cursor.execute(
-                "INSERT INTO students (firstName ,lastName ,uniNumber ,normalNumber1 ,normalNumber2 ,normalNumber3 ,normalNumber4 , normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO students (firstName ,lastName ,uniNumber ,normalNumber1 ,normalNumber2 ,normalNumber3 ,normalNumber4 , normalNumber5, spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5,ave1,ave2,aveAll) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (firstName, lastName, uniNumber, normalNumber1, normalNumber2, normalNumber3, normalNumber4,
                  normalNumber5,
-                 spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5))
+                 spcNumber1, spcNumber2, spcNumber3, spcNumber4, spcNumber5, ave1, ave2, aveAll))
             print("Python Variables inserted successfully into students table table")
             # Save the changes to the database
             sqliteConnection.commit()
@@ -79,10 +80,14 @@ def main():
             getSpecificNumber3 = int(input("specific 3 : "))
             getSpecificNumber4 = int(input("specific 4 : "))
             getSpecificNumber5 = int(input("specific 5 : "))
+            ave1 = (getNormalExamNumber1 + getNormalExamNumber2 + getNormalExamNumber3 + getNormalExamNumber4 + getNormalExamNumber5)/5
+            ave2 = (getSpecificNumber1 + getSpecificNumber2 + getSpecificNumber3 + getSpecificNumber4 + getSpecificNumber5)/5
+            aveAll = (ave1 + ave2) / 2
+
             insertVaribleIntoTable(getFirstName, getLastName, getUniversityCode, getNormalExamNumber1,
                                    getNormalExamNumber2, getNormalExamNumber3, getNormalExamNumber4,
                                    getNormalExamNumber5, getSpecificNumber1, getSpecificNumber2, getSpecificNumber3,
-                                   getSpecificNumber4, getSpecificNumber5)
+                                   getSpecificNumber4, getSpecificNumber5, ave1, ave2, aveAll)
             print("student {} inserted to table \n", format(i))
 
             if i == studentCount:
@@ -179,11 +184,9 @@ def main():
         def printMashrootinList():
             conn1 = sqlite3.connect("Students.db")
 
-            # create a cursor object
 
             cur1 = conn1.cursor()
 
-            # execute the query
             # cur1.execute("SELECT * FROM students WHERE uniNumber = ?", (uniNumebrGet,))
             #
             # #
@@ -206,11 +209,47 @@ def main():
             #     print("good studnet(mashroot nashode) ")
             # print("average of normalNumbers is : {}".format(aveNormalNumbers))
             # print("average of specificNumbers is : {}".format(aveSpcNumbers))
-
+            cur1.execute("SELECT firstName, Case when aveAll < 12 THEN 'Mashroot' Else 'mashroot nist' END as 'uniExamNumbers' FROM students ",)
+            results = cur1.fetchall()
+            for row in results:
+                print(row)
             cur1.close()
             conn1.close()
 
         printMashrootinList()
+        main()
+    elif getnumber == 7:
+        def printMomtazinList():
+            conn1 = sqlite3.connect("Students.db")
+
+            cur1 = conn1.cursor()
+            cur1.execute(
+                "SELECT firstName, Case when aveAll >= 17 THEN 'Momtaz' Else 'momtaz nist' END as 'uniExamNumbers' FROM students ", )
+            results = cur1.fetchall()
+            for row in results:
+                print(row)
+
+            cur1.close()
+            conn1.close()
+        printMomtazinList()
+        main()
+    elif getnumber == 8:
+        addBozorg1 = int(input("tell me add bozorg"))
+        addkoochak1 = int(input("tell me add koochak"))
+        def PerintUserinputBetweenTwoNumber(addBozorg,addKoochak):
+            conn1 = sqlite3.connect("Students.db")
+
+            cur1 = conn1.cursor()
+            cur1.execute(
+                "SELECT firstName, Case when aveAll > ? and aveAll < ? THEN 'ast' Else 'beyn baze dade shode nist' END as 'uniExamNumbers' FROM students ", (addKoochak,addBozorg,))
+            results = cur1.fetchall()
+            for row in results:
+                print(row)
+
+            cur1.close()
+            conn1.close()
+
+        PerintUserinputBetweenTwoNumber(addBozorg1,addkoochak1)
         main()
     elif getnumber == 9:
         obj.print_db()
