@@ -180,6 +180,7 @@ def main():
             conn1 = sqlite3.connect("Students.db")
 
             # create a cursor object
+
             cur1 = conn1.cursor()
 
             # execute the query
@@ -206,9 +207,9 @@ def main():
             # print("average of normalNumbers is : {}".format(aveNormalNumbers))
             # print("average of specificNumbers is : {}".format(aveSpcNumbers))
 
-
             cur1.close()
             conn1.close()
+
         printMashrootinList()
         main()
     elif getnumber == 9:
