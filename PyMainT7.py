@@ -52,8 +52,8 @@ def insertVaribleIntoTable(firstName, lastName, uniNumber, normalNumber1, normal
 
 def main():
     print(
-        "Choose your choice for operation\n\n 1_Add Student to list\n\n 2_delete Student from list \n\n 3_Edit Student perapeties with geting UniCode:\n\n 4 Calucate and print full name and exam results and Average normal and avarage specific exam numbers\n\n 5_List of bad Studente(12+) \n\n 6_list of Good Students(17+) \n\n 7_list of between exma number average \n\n 8_full result of all students \n\n 9_exit\n\n"
-        " 10_delete db")
+        "Choose your choice for operation\n\n 1_Add Student to list\n\n 2_delete Student from list \n\n 3_Edit Student perapeties with geting UniCode:\n\n 4 Calucate and print full name and exam results and Average normal and avarage specific exam numbers\n\n 5_List of bad Studente(12+) \n\n 6_list of Good Students(17+) \n\n 7_list of between exma number average \n\n 9_full result of all students \n\n 10_exit\n\n"
+        " 11_delete db")
     getnumber = int(input("tell me : the number : "))
     if getnumber == 1:
 
@@ -107,8 +107,8 @@ def main():
             #  sqlite = '"SELECT FROM students where uniNumber = ?"'
             #  cur.execute(sqlite, (uniNumberForWorkWithStudentInDataBaseAndDelete,))
             #  result = cur.fetchall()
-            sql_update_query = """DELETE from students where uniNumber = ?"""
-            cur.execute(sql_update_query, (uniNumberForRemove,))
+            sql_remove_query = """DELETE from students where uniNumber = ?"""
+            cur.execute(sql_remove_query, (uniNumberForRemove,))
             conn.commit()
 
         RemoveAllWithGetUniNumber(int(input("tell me a number for delete3")))
@@ -145,13 +145,83 @@ def main():
         # editTableWithGetUniNumber(int(input("tell me a number for edit")))
         obj.print_db()
         main()
-    elif getnumber == 8:
-        obj.print_db()
+    elif getnumber == 5:
+        def printKhosusiatWithGetUniNumber(uniNumebrGet):
+            conn1 = sqlite3.connect("Students.db")
+
+            # create a cursor object
+            cur1 = conn1.cursor()
+            # execute the query
+            cur1.execute("SELECT * FROM students WHERE uniNumber = ?", (uniNumebrGet,))
+
+            #
+            results = cur1.fetchall()
+            normalNumbersSum = 0
+            spcNumbersSum = 0
+            sumOfspcNumber = 0
+
+            for row in results:
+                normalNumbersSum = normalNumbersSum + row[3] + row[4] + row[5] + row[6] + row[7]
+                spcNumbersSum = spcNumbersSum + row[8] + row[9] + row[10] + row[11] + row[12]
+                print("full name is {} {}".format(row[0], row[1]))
+                print("uniNumber is {}".format(row[2]))
+            aveNormalNumbers = normalNumbersSum / 5
+            aveSpcNumbers = spcNumbersSum / 5
+            print("average of normalNumbers is : {}".format(aveNormalNumbers))
+            print("average of specificNumbers is : {}".format(aveSpcNumbers))
+            # close the connection
+            cur1.close()
+            conn1.close()
+
+        printKhosusiatWithGetUniNumber(int(input("tell me a number for print")))
+        main()
+    elif getnumber == 6:
+        def printMashrootinList():
+            conn1 = sqlite3.connect("Students.db")
+
+            # create a cursor object
+            cur1 = conn1.cursor()
+
+            # execute the query
+            # cur1.execute("SELECT * FROM students WHERE uniNumber = ?", (uniNumebrGet,))
+            #
+            # #
+            # results = cur1.fetchall()
+            # for row in results:
+            #     normalNumbersSum = normalNumbersSum + row[3] + row[4] + row[5] + row[6] + row[7]
+            #     spcNumbersSum = spcNumbersSum + row[8] + row[9] + row[10] + row[11] + row[12]
+            #     print("full name is {} {}".format(row[0], row[1]))
+            #     print("uniNumber is {}".format(row[2]))
+            # aveNormalNumbers = normalNumbersSum / 5
+            # aveSpcNumbers = spcNumbersSum / 5
+            # for row in results:
+            #     avarageOfaveSpcNumbersAndSpcNumbers= (aveSpcNumbers + aveNormalNumbers)/2
+            #     cur1.execute("SELECT * FROM my_table WHERE ? < ?", (avarageOfaveSpcNumbersAndSpcNumbers,12,))
+            #
+            # if avarageOfaveSpcNumbersAndSpcNumbers < 12:
+            #     print("bad studnet(mashroot) ")
+            #
+            # else:
+            #     print("good studnet(mashroot nashode) ")
+            # print("average of normalNumbers is : {}".format(aveNormalNumbers))
+            # print("average of specificNumbers is : {}".format(aveSpcNumbers))
+
+
+            cur1.close()
+            conn1.close()
+        printMashrootinList()
         main()
     elif getnumber == 9:
-        exit(0)
+        obj.print_db()
+        main()
     elif getnumber == 10:
+        exit(0)
+    elif getnumber == 11:
         database1.database1.delete()
+    else:
+        exitPrint = "exit"
+        print("\n Number for operation not found ({})".format(exitPrint))
+        exit(0)
 
 
 # cursorForStudent.execute("SELECT * FROM students")
