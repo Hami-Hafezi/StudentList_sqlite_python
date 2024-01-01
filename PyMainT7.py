@@ -80,8 +80,10 @@ def main():
             getSpecificNumber3 = int(input("specific 3 : "))
             getSpecificNumber4 = int(input("specific 4 : "))
             getSpecificNumber5 = int(input("specific 5 : "))
-            ave1 = (getNormalExamNumber1 + getNormalExamNumber2 + getNormalExamNumber3 + getNormalExamNumber4 + getNormalExamNumber5)/5
-            ave2 = (getSpecificNumber1 + getSpecificNumber2 + getSpecificNumber3 + getSpecificNumber4 + getSpecificNumber5)/5
+            ave1 = (
+                               getNormalExamNumber1 + getNormalExamNumber2 + getNormalExamNumber3 + getNormalExamNumber4 + getNormalExamNumber5) / 5
+            ave2 = (
+                               getSpecificNumber1 + getSpecificNumber2 + getSpecificNumber3 + getSpecificNumber4 + getSpecificNumber5) / 5
             aveAll = (ave1 + ave2) / 2
 
             insertVaribleIntoTable(getFirstName, getLastName, getUniversityCode, getNormalExamNumber1,
@@ -97,14 +99,6 @@ def main():
         obj.print_db()
         main()
     elif getnumber == 2:
-        numberForDeleteStudent = int(input("tell me the student uniNumber for delete his/her : "))
-
-        # cur.execute("""ALTER TABLE students DROP ROW normalNumber1 where uniNimber = ?;""")
-        obj.print_db()
-
-        print("Student deleted from studensts table")
-        main()
-    elif getnumber == 3:
         def RemoveAllWithGetUniNumber(uniNumberForRemove):
             conn = sqlite3.connect("Students.db")
 
@@ -119,38 +113,46 @@ def main():
         RemoveAllWithGetUniNumber(int(input("tell me a number for delete3")))
         obj.print_db()
         main()
-    elif getnumber == 4:
-        # def editTableWithGetUniNumber(uniNumberForEdit):
-        #     conn = sqlite3.connect("Students.db")
-        #     cur = conn.cursor()
-        #     getFirstName = str(input("FirstName : "))
-        #     getLastName = str(input("LastName : "))
-        #     getUniversityCode = int(input("UniversityCode with 5 digit : "))
-        #     getNormalExamNumber1 = int(input("normal 1 : "))
-        #     getNormalExamNumber2 = int(input("normal 2 : "))
-        #     getNormalExamNumber3 = int(input("normal 3 : "))
-        #     getNormalExamNumber4 = int(input("normal 4 : "))
-        #     getNormalExamNumber5 = int(input("normal 5 : "))
-        #     getSpecificNumber1 = int(input("specific 1 : "))
-        #     getSpecificNumber2 = int(input("specific 2 : "))
-        #     getSpecificNumber3 = int(input("specific 3 : "))
-        #     getSpecificNumber4 = int(input("specific 4 : "))
-        #     getSpecificNumber5 = int(input("specific 5 : "))
-        #     # execute the query
-        #     cur.execute(
-        #         "UPDATE students SET firstName  = ?, lastName = ?,uniNumber  = ?, normalNumber1 = ?,normalNumber2  = ?, normalNumber3 = ?,normalNumber4  = ?, normalNumber5 = ?,spcNumber1  = ?, spcNumber2 = ?,spcNumber3  = ?, spcNumber4 = ?,spcNumber5 = ? WHERE uniNumber = ?",
-        #         (getFirstName, getLastName, getUniversityCode,getNormalExamNumber1,getNormalExamNumber2, getNormalExamNumber3,getNormalExamNumber4, getNormalExamNumber5,getSpecificNumber1, getSpecificNumber2,getSpecificNumber3, getSpecificNumber4,getSpecificNumber5, uniNumberForEdit))
-        #     obj.print_db()
-        #     # commit the changes
-        #     conn.commit()
-        #
-        #     # close the connection
-        #     conn.close()
-        #
-        # editTableWithGetUniNumber(int(input("tell me a number for edit")))
+    elif getnumber == 3:
+        numberForDeleteStudent = int(input("tell me the student uniNumber for delete his/her properties : "))
+
+        # cur.execute("""ALTER TABLE students DROP ROW normalNumber1 where uniNimber = ?;""")
         obj.print_db()
+
+        print("Student deleted from studensts table")
         main()
-    elif getnumber == 5:
+    #   elif getnumber == 4:
+    # def editTableWithGetUniNumber(uniNumberForEdit):
+    #     conn = sqlite3.connect("Students.db")
+    #     cur = conn.cursor()
+    #     getFirstName = str(input("FirstName : "))
+    #     getLastName = str(input("LastName : "))
+    #     getUniversityCode = int(input("UniversityCode with 5 digit : "))
+    #     getNormalExamNumber1 = int(input("normal 1 : "))
+    #     getNormalExamNumber2 = int(input("normal 2 : "))
+    #     getNormalExamNumber3 = int(input("normal 3 : "))
+    #     getNormalExamNumber4 = int(input("normal 4 : "))
+    #     getNormalExamNumber5 = int(input("normal 5 : "))
+    #     getSpecificNumber1 = int(input("specific 1 : "))
+    #     getSpecificNumber2 = int(input("specific 2 : "))
+    #     getSpecificNumber3 = int(input("specific 3 : "))
+    #     getSpecificNumber4 = int(input("specific 4 : "))
+    #     getSpecificNumber5 = int(input("specific 5 : "))
+    #     # execute the query
+    #     cur.execute(
+    #         "UPDATE students SET firstName  = ?, lastName = ?,uniNumber  = ?, normalNumber1 = ?,normalNumber2  = ?, normalNumber3 = ?,normalNumber4  = ?, normalNumber5 = ?,spcNumber1  = ?, spcNumber2 = ?,spcNumber3  = ?, spcNumber4 = ?,spcNumber5 = ? WHERE uniNumber = ?",
+    #         (getFirstName, getLastName, getUniversityCode,getNormalExamNumber1,getNormalExamNumber2, getNormalExamNumber3,getNormalExamNumber4, getNormalExamNumber5,getSpecificNumber1, getSpecificNumber2,getSpecificNumber3, getSpecificNumber4,getSpecificNumber5, uniNumberForEdit))
+    #     obj.print_db()
+    #     # commit the changes
+    #     conn.commit()
+    #
+    #     # close the connection
+    #     conn.close()
+    #
+    # editTableWithGetUniNumber(int(input("tell me a number for edit")))
+    # obj.print_db()
+    # main()
+    elif getnumber == 4:
         def printKhosusiatWithGetUniNumber(uniNumebrGet):
             conn1 = sqlite3.connect("Students.db")
 
@@ -184,7 +186,6 @@ def main():
         def printMashrootinList():
             conn1 = sqlite3.connect("Students.db")
 
-
             cur1 = conn1.cursor()
 
             # cur1.execute("SELECT * FROM students WHERE uniNumber = ?", (uniNumebrGet,))
@@ -209,7 +210,8 @@ def main():
             #     print("good studnet(mashroot nashode) ")
             # print("average of normalNumbers is : {}".format(aveNormalNumbers))
             # print("average of specificNumbers is : {}".format(aveSpcNumbers))
-            cur1.execute("SELECT firstName, Case when aveAll < 12 THEN 'Mashroot' Else 'mashroot nist' END as 'uniExamNumbers' FROM students ",)
+            cur1.execute(
+                "SELECT firstName, Case when aveAll < 12 THEN 'Mashroot' Else 'mashroot nist' END as 'uniExamNumbers' FROM students ", )
             results = cur1.fetchall()
             for row in results:
                 print(row)
@@ -219,6 +221,57 @@ def main():
         printMashrootinList()
         main()
     elif getnumber == 7:
+        getDars = int(input(
+            "tell me one normal number or specific number its :normal number [0 ta 4] specific number [5 ta 9] "))
+
+        def printAllStudnetsInListWithGetOneNoramelOrSpcNumber(getdarsNumber):
+            conn1 = sqlite3.connect("Students.db")
+
+            cur1 = conn1.cursor()
+            numberField = ""
+            if getdarsNumber == 0:
+                numberField = "normalNumber1"
+            elif getdarsNumber == 1:
+                numberField = "normalNumber1"
+            elif getdarsNumber == 2:
+                numberField = "normalNumber1"
+            elif getdarsNumber == 3:
+                numberField = "normalNumber1"
+            elif getdarsNumber == 4:
+                numberField = "normalNumber1"
+            elif getdarsNumber == 5:
+                numberField = "spcNumber1"
+            elif getdarsNumber == 6:
+                numberField = "spcNumber2"
+            elif getdarsNumber == 7:
+                numberField = "spcNumber3"
+            elif getdarsNumber == 8:
+                numberField = "spcNumber4"
+            elif getdarsNumber == 9:
+                numberField = "spcNumber5"
+            else:
+                print("not found")
+           # cur1.execute(
+          # "SELECT * FROM students,WHERE {column_name} IS ?", (numberField, numberField,))
+
+                # execute the query
+            cur1.execute("SELECT ? FROM students", (getdarsNumber,))
+
+            # fetch the results
+            results = cur1.fetchall()
+
+            # print the results
+            for row in results:
+                print(row)
+
+
+
+            cur1.close()
+            conn1.close()
+
+        printAllStudnetsInListWithGetOneNoramelOrSpcNumber(getDars)
+        main()
+    elif getnumber == 8:
         def printMomtazinList():
             conn1 = sqlite3.connect("Students.db")
 
@@ -231,17 +284,20 @@ def main():
 
             cur1.close()
             conn1.close()
+
         printMomtazinList()
         main()
-    elif getnumber == 8:
+    elif getnumber == 9:
         addBozorg1 = int(input("tell me add bozorg"))
         addkoochak1 = int(input("tell me add koochak"))
-        def PerintUserinputBetweenTwoNumber(addBozorg,addKoochak):
+
+        def PerintUserinputBetweenTwoNumber(addBozorg, addKoochak):
             conn1 = sqlite3.connect("Students.db")
 
             cur1 = conn1.cursor()
             cur1.execute(
-                "SELECT firstName, Case when aveAll > ? and aveAll < ? THEN 'ast' Else 'beyn baze dade shode nist' END as 'uniExamNumbers' FROM students ", (addKoochak,addBozorg,))
+                "SELECT firstName, Case when aveAll > ? and aveAll < ? THEN 'ast' Else 'beyn baze dade shode nist' END as 'uniExamNumbers' FROM students ",
+                (addKoochak, addBozorg,))
             results = cur1.fetchall()
             for row in results:
                 print(row)
@@ -249,14 +305,14 @@ def main():
             cur1.close()
             conn1.close()
 
-        PerintUserinputBetweenTwoNumber(addBozorg1,addkoochak1)
-        main()
-    elif getnumber == 9:
-        obj.print_db()
+        PerintUserinputBetweenTwoNumber(addBozorg1, addkoochak1)
         main()
     elif getnumber == 10:
-        exit(0)
+        obj.print_db()
+        main()
     elif getnumber == 11:
+        exit(0)
+    elif getnumber == 12:
         database1.database1.delete()
     else:
         exitPrint = "exit"
